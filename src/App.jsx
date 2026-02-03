@@ -38,14 +38,23 @@ export default function Page() {
   };
 
   return (
-    <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
+    <div className="overflow-y-auto flex flex-col items-center justify-center pt-4 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900">
       {yesPressed ? (
-        <>
-          <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" />
-          <div className="text-4xl md:text-6xl font-bold my-4">
-            Ok Yayyyyy!!!
+        <div className="py-8 pb-20">
+          <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" className="mx-auto" />
+          <div className="text-4xl md:text-6xl font-bold my-4 text-center">
+            I Love You Akshatha! 💕
           </div>
-        </>
+          <div className="max-w-2xl mx-auto px-6 text-center space-y-4 text-lg md:text-xl leading-relaxed">
+            <p className="font-semibold text-2xl">Akshatha, my love,</p>
+            <p>From the moment you came into my life, everything began to feel more beautiful and meaningful. You didn&apos;t just enter my world — you changed it in the most gentle and magical way. Loving you feels natural, peaceful, and right, like my heart always knew it was waiting for you.</p>
+            <p>What I love most about you is your innocence and your kind nature. The way you care, the way you understand without words, and the purity in your heart make you so incredibly special. Your smile has the power to calm my worries, and your presence alone brings me peace. You make the simplest moments feel precious just by being you.</p>
+            <p>Since you became a part of my life, I see the world differently. Life feels warmer, happier, and more hopeful. You inspire me to be a better person every single day, and I&apos;m endlessly grateful for your love, your patience, and your trust in me.</p>
+            <p>I don&apos;t just love you for who you are today — I love the future I see with you. I want to walk beside you through every joy, every challenge, every dream. I want to protect your heart, respect your soul, and love you more deeply with each passing day.</p>
+            <p className="font-semibold text-xl">Akshatha, you are not just my love — you are my forever. Will you marry me and choose to spend your life with me?</p>
+            <p className="font-bold text-2xl">Forever yours, Jay ❤️</p>
+          </div>
+        </div>
       ) : (
         <>
           <img
@@ -61,7 +70,7 @@ export default function Page() {
             src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.webp"
           />
           <h1 className="text-4xl md:text-6xl my-4 text-center">
-            Will you be my Valentine?
+            Akshatha, Will you be my Valentine?
           </h1>
           <div className="flex flex-wrap justify-center gap-2 items-center">
             <button
@@ -94,7 +103,7 @@ const Footer = () => {
     >
       Made with{" "}
       <span role="img" aria-label="heart">
-        ❤️
+        Love By Your Baby Boy❤️ 
       </span>
     </a>
   );
