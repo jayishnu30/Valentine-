@@ -94,6 +94,141 @@ const TypewriterText = ({ text, delay = 50 }) => {
   return <span>{displayText}</span>;
 };
 
+// Love Calculator Component
+const LoveCalculator = () => {
+  const [calculating, setCalculating] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState(0);
+
+  const categories = [
+    { name: "Chemistry", score: 100, icon: "⚗️", color: "from-pink-400 to-rose-400" },
+    { name: "Understanding", score: 100, icon: "🧠", color: "from-rose-400 to-red-400" },
+    { name: "Trust", score: 100, icon: "🤝", color: "from-red-400 to-pink-400" },
+    { name: "Laughter", score: 100, icon: "😄", color: "from-pink-400 to-purple-400" },
+    { name: "Romance", score: 100, icon: "💋", color: "from-purple-400 to-pink-400" },
+    { name: "Future Together", score: 100, icon: "🌟", color: "from-pink-500 to-rose-500" }
+  ];
+
+  const handleCalculate = () => {
+    setCalculating(true);
+    setShowResults(false);
+    setCurrentCategory(0);
+
+    // Animate through categories
+    const interval = setInterval(() => {
+      setCurrentCategory((prev) => {
+        if (prev >= categories.length - 1) {
+          clearInterval(interval);
+          setTimeout(() => {
+            setCalculating(false);
+            setShowResults(true);
+          }, 500);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 800);
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto px-6 mt-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
+        Our Love Compatibility 💖
+      </h2>
+      <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+        <div className="text-center mb-8">
+          <div className="text-5xl mb-4">💑</div>
+          <p className="text-xl font-semibold mb-2">Jay & Akshatha</p>
+          <p className="text-gray-600">Let&apos;s calculate our perfect match!</p>
+        </div>
+
+        {!calculating && !showResults && (
+          <button
+            onClick={handleCalculate}
+            className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+          >
+            Calculate Our Love 💕
+          </button>
+        )}
+
+        {calculating && (
+          <div className="space-y-4">
+            <p className="text-center text-lg font-semibold text-pink-600 animate-pulse">
+              Analyzing our connection...
+            </p>
+            {categories.map((category, index) => (
+              <div key={index} className={`transition-all duration-500 ${index <= currentCategory ? 'opacity-100' : 'opacity-30'}`}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-semibold flex items-center gap-2">
+                    <span className="text-2xl">{category.icon}</span>
+                    {category.name}
+                  </span>
+                  {index <= currentCategory && (
+                    <span className="text-pink-600 font-bold animate-pulse">{category.score}%</span>
+                  )}
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                  <div
+                    className={`h-full bg-gradient-to-r ${category.color} transition-all duration-1000 ease-out`}
+                    style={{ width: index <= currentCategory ? '100%' : '0%' }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {showResults && (
+          <div className="space-y-6 animate-scaleIn">
+            <div className="space-y-4">
+              {categories.map((category, index) => (
+                <div key={index}>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-semibold flex items-center gap-2">
+                      <span className="text-2xl">{category.icon}</span>
+                      {category.name}
+                    </span>
+                    <span className="text-pink-600 font-bold">{category.score}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                    <div
+                      className={`h-full bg-gradient-to-r ${category.color}`}
+                      style={{ width: '100%' }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-gradient-to-r from-pink-100 to-rose-100 rounded-2xl p-6 text-center">
+              <div className="text-6xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent mb-2">
+                100%
+              </div>
+              <p className="text-2xl font-bold text-gray-800 mb-2">Perfect Match! 💯</p>
+              <p className="text-gray-700">
+                We&apos;re absolutely perfect for each other in every way. Our love is written in the stars! ✨
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 text-center">
+              <div className="bg-pink-50 rounded-xl p-4">
+                <div className="text-3xl mb-2">💞</div>
+                <p className="font-semibold text-gray-800">Soulmates</p>
+                <p className="text-sm text-gray-600">Destined to be together</p>
+              </div>
+              <div className="bg-rose-50 rounded-xl p-4">
+                <div className="text-3xl mb-2">♾️</div>
+                <p className="font-semibold text-gray-800">Forever</p>
+                <p className="text-sm text-gray-600">Infinite love & happiness</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // 100 Reasons Component
 const LoveReasons = () => {
   const reasons = [
@@ -306,7 +441,75 @@ const Confetti = () => {
 export default function Page() {
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [otpError, setOtpError] = useState(false);
   const yesButtonSize = noCount * 20 + 16;
+
+  const handleOtpSubmit = (e) => {
+    e.preventDefault();
+    if (otp === "0830") {
+      setIsAuthenticated(true);
+      setOtpError(false);
+    } else {
+      setOtpError(true);
+      setOtp("");
+    }
+  };
+
+  // If not authenticated, show OTP screen
+  if (!isAuthenticated) {
+    return (
+      <div className="overflow-hidden flex flex-col items-center justify-center h-screen selection:bg-rose-600 selection:text-white text-zinc-900 bg-gradient-to-br from-pink-50 via-rose-50 to-red-50 relative">
+        <FloatingHearts />
+        <div className="relative z-10 max-w-md mx-4">
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
+            <div className="text-center mb-6">
+              <div className="text-6xl mb-4">🔐</div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
+                For Someone Special
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Enter the code to unlock your surprise 💕
+              </p>
+            </div>
+            <form onSubmit={handleOtpSubmit} className="space-y-4">
+              <div>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  maxLength="4"
+                  value={otp}
+                  onChange={(e) => {
+                    setOtp(e.target.value.replace(/\D/g, ""));
+                    setOtpError(false);
+                  }}
+                  placeholder="Enter 4-digit code"
+                  className={`w-full text-center text-2xl font-bold tracking-widest px-4 py-4 rounded-xl border-2 ${
+                    otpError ? "border-red-500 bg-red-50" : "border-pink-300 bg-white"
+                  } focus:outline-none focus:border-pink-500 transition-colors`}
+                />
+                {otpError && (
+                  <p className="text-red-500 text-sm mt-2 text-center animate-pulse">
+                    Oops! Wrong code. Try again! 💔
+                  </p>
+                )}
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+              >
+                Unlock My Surprise 💝
+              </button>
+            </form>
+            <p className="text-center text-sm text-gray-500 mt-4">
+              Hint: Our special dates combined 😉
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Add your photos here - put them in src/assets folder
   const photos = [
@@ -401,6 +604,9 @@ export default function Page() {
 
           {/* 100 Reasons List */}
           <LoveReasons />
+
+          {/* Love Calculator */}
+          <LoveCalculator />
 
           {/* Countdown Timer */}
           <CountdownTimer />
