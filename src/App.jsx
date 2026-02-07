@@ -2,6 +2,128 @@ import { useState, useEffect } from "react";
 import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
 import lovesvg2 from "./assets/Love In The Air SVG Cut File.svg";
 
+// Propose Day Ring Box Component
+const ProposeRingBox = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showProposal, setShowProposal] = useState(false);
+  const [accepted, setAccepted] = useState(false);
+
+  const handleOpenBox = () => {
+    setIsOpen(true);
+    setTimeout(() => {
+      setShowProposal(true);
+    }, 1000);
+  };
+
+  const handleAccept = () => {
+    setAccepted(true);
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto px-6 mt-16">
+      <div className="bg-gradient-to-br from-pink-100 via-rose-100 to-red-100 rounded-3xl p-8 shadow-2xl">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+            💍 Propose Day Special 💍
+          </h2>
+          <p className="text-lg text-gray-700">
+            Baby, I have something very special to ask you...
+          </p>
+        </div>
+
+        <div className="flex flex-col items-center">
+          {!isOpen && (
+            <div className="text-center">
+              <div className="relative inline-block cursor-pointer transform transition-all hover:scale-110" onClick={handleOpenBox}>
+                <div className="w-48 h-32 bg-gradient-to-br from-red-600 to-rose-700 rounded-lg shadow-2xl relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-rose-600 rounded-lg transform -translate-y-2"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl">
+                    🎁
+                  </div>
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg"></div>
+                </div>
+              </div>
+              <p className="mt-6 text-lg font-semibold text-pink-600 animate-pulse">
+                Click the box to open 💝
+              </p>
+            </div>
+          )}
+
+          {isOpen && !accepted && (
+            <div className="animate-scaleIn w-full flex flex-col items-center">
+              <div className="relative flex justify-center mb-16 mt-8">
+                <div className="w-48 h-32 bg-gradient-to-br from-red-600 to-rose-700 rounded-lg shadow-2xl relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-rose-600 rounded-lg transform -translate-y-24 transition-all duration-1000"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-12">
+                    <div className="text-8xl animate-pulse">💍</div>
+                  </div>
+                </div>
+              </div>
+
+              {showProposal && (
+                <div className="w-full max-w-2xl bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl animate-fadeIn mt-8">
+                  <div className="text-center space-y-6">
+                    <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+                      My Beautiful Sweet Baby
+                    </h3>
+                    <div className="space-y-4 text-lg text-gray-800 leading-relaxed">
+                      <p>
+                        Today, on this special Propose Day, I want to tell you something that my heart has been screaming since the day we met. You are the most beautiful blessing that has ever walked into my life.
+                      </p>
+                      <p>
+                        Your smile lights up my darkest days, your laughter is the melody my heart dances to, and your presence makes everything feel right. With you, I&apos;ve discovered a love so pure, so deep, that I never knew existed.
+                      </p>
+                      <p>
+                        You&apos;re not just the person I love - you&apos;re my best friend, my safe place, my home. Every moment with you feels like a dream I never want to wake up from. You make me want to be better, to love deeper, to live fuller.
+                      </p>
+                      <p className="font-semibold text-pink-600">
+                        I don&apos;t want to imagine a single day without you by my side. I want to wake up next to you every morning, hold your hand through every storm, celebrate every joy, and build a lifetime of beautiful memories together.
+                      </p>
+                    </div>
+                    <div className="py-6">
+                      <div className="text-6xl mb-4">💕</div>
+                      <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent mb-4">
+                        Will You Be Mine Forever?
+                      </p>
+                      <p className="text-xl text-gray-700">
+                        Baby, will you make me the luckiest person alive and say YES to spending forever with me?
+                      </p>
+                    </div>
+                    <button
+                      onClick={handleAccept}
+                      className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-12 py-4 rounded-full font-bold text-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-110"
+                    >
+                      Yes, Forever! 💖
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {accepted && (
+            <div className="w-full max-w-2xl bg-gradient-to-br from-pink-100 to-rose-100 rounded-2xl p-12 shadow-xl animate-scaleIn text-center">
+              <div className="text-8xl mb-6 animate-bounce">🎉</div>
+              <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent mb-4">
+                As You Said Yes Baby! 💍
+              </h3>
+              <p className="text-2xl text-gray-800 mb-4">
+                Let&apos;s marry and make our forever start!
+              </p>
+              <p className="text-xl text-gray-700">
+                I promise to love you, cherish you, and make you smile every single day of our forever! 💕
+              </p>
+              <div className="mt-8 text-6xl">
+                ❤️ 💑 ❤️
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Countdown Timer Component
 const CountdownTimer = () => {
   const [timeElapsed, setTimeElapsed] = useState({
@@ -465,12 +587,15 @@ export default function Page() {
         <div className="relative z-10 max-w-md mx-4">
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
             <div className="text-center mb-6">
-              <div className="text-6xl mb-4">🔐</div>
+              <div className="text-6xl mb-4">🌹</div>
               <h2 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
-                For Someone Special
+                For Akshatha Nadumane
               </h2>
               <p className="text-gray-600 text-lg">
-                Enter the code to unlock your surprise 💕
+                This is made especially for you 💕
+              </p>
+              <p className="text-gray-500 text-sm mt-2">
+                Enter the special code to unlock your surprise
               </p>
             </div>
             <form onSubmit={handleOtpSubmit} className="space-y-4">
@@ -601,6 +726,9 @@ export default function Page() {
               <TypewriterText text="Forever yours, Jay ❤️" delay={80} />
             </p>
           </div>
+
+          {/* Propose Day Ring Box */}
+          <ProposeRingBox />
 
           {/* 100 Reasons List */}
           <LoveReasons />
