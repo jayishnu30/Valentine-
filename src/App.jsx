@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
 import lovesvg2 from "./assets/Love In The Air SVG Cut File.svg";
+import AkshathaGPT from "./components/AkshathaGPT";
 
 // Propose Day Ring Box Component
 const ProposeRingBox = () => {
@@ -839,6 +840,10 @@ export default function Page() {
           </div>
         </div>
       )}
+
+      {/* AkshathaGPT Chatbot */}
+      {yesPressed && <AkshathaGPT />}
+
       <Footer />
     </div>
   );
