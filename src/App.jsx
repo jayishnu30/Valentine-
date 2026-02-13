@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
 import lovesvg2 from "./assets/Love In The Air SVG Cut File.svg";
 import AkshathaGPT from "./components/AkshathaGPT";
+import ValentineLetter from "./components/ValentineLetter";
 
 // Propose Day Ring Box Component
 const ProposeRingBox = () => {
@@ -730,6 +731,9 @@ export default function Page() {
 
           {/* Propose Day Ring Box */}
           <ProposeRingBox />
+
+          {/* Valentine's Love Letter */}
+          <ValentineLetter />
 
           {/* 100 Reasons List */}
           <LoveReasons />
