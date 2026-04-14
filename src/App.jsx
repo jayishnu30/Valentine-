@@ -3,6 +3,7 @@ import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
 import lovesvg2 from "./assets/Love In The Air SVG Cut File.svg";
 import AkshathaGPT from "./components/AkshathaGPT";
 import ValentineLetter from "./components/ValentineLetter";
+import SorryPage from "./components/SorryPage";
 
 // Propose Day Ring Box Component
 const ProposeRingBox = () => {
@@ -562,12 +563,49 @@ const Confetti = () => {
   );
 };
 
+const Footer = () => (
+  <footer className="w-full mt-20 py-10 px-6 relative z-10">
+    <div className="max-w-4xl mx-auto">
+      {/* Divider */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-pink-300 to-transparent" />
+        <span className="text-2xl">💕</span>
+        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-pink-300 to-transparent" />
+      </div>
+
+      {/* Main footer content */}
+      <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-xl text-center">
+        <div className="text-4xl mb-3">🌹</div>
+        <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent mb-2">
+          Jay &amp; Akshatha
+        </h3>
+        <p className="text-pink-400 text-sm mb-4">Together since 21st November 2025 💞</p>
+
+        <div className="flex justify-center gap-3 text-xl mb-6">
+          💖 🌹 💍 🌸 💕
+        </div>
+
+        <p className="text-gray-500 text-sm italic max-w-md mx-auto leading-relaxed">
+          &ldquo;In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.&rdquo;
+        </p>
+
+        <div className="mt-6 pt-6 border-t border-pink-100">
+          <p className="text-gray-400 text-xs">
+            Made with all my love, just for you 🌹 &mdash; Forever yours, Jay ❤️
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+);
+
 export default function Page() {
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState(false);
+  const [showSorry, setShowSorry] = useState(true);
   const yesButtonSize = noCount * 20 + 16;
 
   const handleOtpSubmit = (e) => {
@@ -581,26 +619,30 @@ export default function Page() {
     }
   };
 
+  if (showSorry) {
+    return <SorryPage onContinue={() => setShowSorry(false)} />;
+  }
+
   // If not authenticated, show OTP screen
   if (!isAuthenticated) {
     return (
-      <div className="overflow-hidden flex flex-col items-center justify-center h-screen selection:bg-rose-600 selection:text-white text-zinc-900 bg-gradient-to-br from-pink-50 via-rose-50 to-red-50 relative">
+      <div className="fixed inset-0 flex flex-col items-center justify-center selection:bg-rose-600 selection:text-white text-zinc-900 bg-gradient-to-br from-pink-50 via-rose-50 to-red-50 overflow-hidden">
         <FloatingHearts />
-        <div className="relative z-10 max-w-md mx-4">
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
-            <div className="text-center mb-6">
-              <div className="text-6xl mb-4">🌹</div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
+        <div className="relative z-10 w-full max-w-sm px-4">
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-2xl">
+            <div className="text-center mb-5">
+              <div className="text-5xl mb-3">🌹</div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-1 bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
                 For Akshatha Nadumane
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-base">
                 This is made especially for you 💕
               </p>
-              <p className="text-gray-500 text-sm mt-2">
+              <p className="text-gray-500 text-sm mt-1">
                 Enter the special code to unlock your surprise
               </p>
             </div>
-            <form onSubmit={handleOtpSubmit} className="space-y-4">
+            <form onSubmit={handleOtpSubmit} className="space-y-3">
               <div>
                 <input
                   type="text"
@@ -612,7 +654,7 @@ export default function Page() {
                     setOtpError(false);
                   }}
                   placeholder="Enter 4-digit code"
-                  className={`w-full text-center text-2xl font-bold tracking-widest px-4 py-4 rounded-xl border-2 ${
+                  className={`w-full text-center text-2xl font-bold tracking-widest px-4 py-3 rounded-xl border-2 ${
                     otpError ? "border-red-500 bg-red-50" : "border-pink-300 bg-white"
                   } focus:outline-none focus:border-pink-500 transition-colors`}
                 />
@@ -624,12 +666,12 @@ export default function Page() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+                className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
               >
                 Unlock My Surprise 💝
               </button>
             </form>
-            <p className="text-center text-sm text-gray-500 mt-4">
+            <p className="text-center text-sm text-gray-500 mt-3">
               Hint: Our special dates combined 😉
             </p>
           </div>
@@ -853,17 +895,3 @@ export default function Page() {
   );
 }
 
-const Footer = () => {
-  return (
-    <a
-      className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-1 rounded border-rose-300"
-      href="https://github.com/jayishnu30/Valentine-"
-      target="__blank"
-    >
-      Made with{" "}
-      <span role="img" aria-label="heart">
-        Love By Your Baby Boy❤️ 
-      </span>
-    </a>
-  );
-};
